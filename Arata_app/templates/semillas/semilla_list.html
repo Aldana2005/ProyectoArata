@@ -14,7 +14,7 @@
           <th scope="col">Características</th>
           <th scope="col">Origen</th>
           <th scope="col">Precio</th> 
-          <th scope="col">Cantidad Disponible</th>
+          <th scope="col">Cantidad Disponible (Kilos)</th>
           <th scope="col">Imagen</th> <!-- Nueva columna para la imagen -->
           <th scope="col">Acciones</th>
         </tr>
@@ -27,7 +27,7 @@
           <td>{{ semilla.caracteristicas }}</td>
           <td>{{ semilla.origen }}</td> 
           <td>{{ semilla.precio }}</td> 
-          <td>{{ semilla.cantidad_disponible }}</td> 
+          <td>{{ semilla.cantidad_disponible }} Kilos</td> 
           <td>
             {% if semilla.foto %}
             <!-- Evita esto -->
