@@ -34,12 +34,6 @@
    ```bash
       activate
    ```
-    
-  - En Unix o MacOS:
-
-```bash
-   source venv/bin/activate
-```
 
 5. Instala las dependencias:
 
@@ -64,12 +58,5 @@
 ```
 El proyecto estará disponible en http://localhost:8000/.
 
-8. Contribuciones
-  Si deseas contribuir, sigue estos pasos:
 
-- Haz un fork del repositorio.
-- Crea una rama para tu función: `git checkout -b feature/nueva-funcion.`
-- Realiza tus cambios y haz commit: `git commit -m 'Añade nueva función'`.
-- Haz push a la rama: `git push origin feature/nueva-funcion`.
-- Abre un pull request en GitHub.
 

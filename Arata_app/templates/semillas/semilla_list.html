@@ -1,0 +1,51 @@
+{% extends "semillas/base_semilla.html" %}
+{% load static %}
+{% block contenido %}
+<div>
+  <header class="main-header">
+    <h1 class="text-center titulo">Semillas</h1>
+  </header>
+  <div class="d-flex justify-content-center pt-2">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Variedad</th>
+          <th scope="col">Características</th>
+          <th scope="col">Precio</th> 
+          <th scope="col">Cantidad Disponible</th> 
+          <th scope="col">Imagen</th> <!-- Nueva columna para la imagen -->
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for semilla in semillas %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ semilla.variedad }}</td>
+          <td>{{ semilla.caracteristicas }}</td>
+          <td>{{ semilla.precio }}</td> 
+          <td>{{ semilla.cantidad_disponible }}</td> 
+          <td>
+            {% if semilla.foto %}
+            <!-- Evita esto -->
+            <img src="{{ semilla.foto.url }}" width="100" height="100" alt="{{ semilla.nombre }}">
+
+            {% else %}
+            Sin imagen
+            {% endif %}
+          </td>
+          <td>
+            <a href="{% url 'semilla_edit' pk=semilla.pk %}" class="btn btn-sm btn-outline-secondary">Editar</a>
+            <a href="{% url 'semilla_delete' pk=semilla.pk %}" class="btn btn-sm btn-outline-danger">Eliminar</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="text-center">
+    <a href="{% url 'semilla_new' %}" class="btn btn-primary">Agregar nueva semilla</a>
+  </div>
+</div>
+{% endblock %}
