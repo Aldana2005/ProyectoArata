@@ -36,7 +36,13 @@
             </div>
             <div class="col-9 d-flex align-items-center justify-content-end ">
                 <nav>
+                    {% if user.is_authenticate %}
                     <a href="{% url 'home' %}" class="mx-3 btn btn-outline-light btn-floating m-1">
+                        <i class="fas fa-home"></i>
+                        Inicio
+                    </a>
+                    {% endif %}
+                    <a href="{% url 'inicio' %}" class="mx-3 btn btn-outline-light btn-floating m-1">
                         <i class="fas fa-home"></i>
                         Inicio
                     </a>
@@ -44,6 +50,8 @@
                         <i class="fas fa-user"></i>
                         Sobre nosotros
                     </a>
+                    
+                    
                     <a href="{% url 'servicios' %}" class="mx-3 btn btn-outline-light btn-floating m-1">
                         <i class="fas fa-hand-holding"></i>
                         Servicios
@@ -61,14 +69,10 @@
         </div>
     </header>
 
-
     <main class="p-2">
-
-        {% block contenido %}
-        
+        {% block contenido %}  
         <section>
             <h1>Arata Semillas</h1>
-
             <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
             <div id="container-slider">
                 <a href="javascript: funcionEjecutar('anterior');" class="arrowPrev"><i
@@ -84,41 +88,35 @@
                     <li style="background-image: url('{% static  'img/Cafe2.jpeg' %}'); z-index:0; opacity: 1;">
                         <div class="content_slider">
                             <div>
-                                <h2>Imagen 1</h2>
-                                <p>Escribe el texto que aparecerá sobre la imagen número 1.</p>
-                                <a href="https://www.migueltroyano.com" target="_blank" class="btnSlider">Acceder</a>
+                                <h2>Arata</h2>
+                                <p>Venta de Semillas de Cafe.</p>
+                                <a href="{% url 'servicios' %}" target="_blank" class="btnSlider">Acceder</a>
                             </div>
                         </div>
                     </li>
                     <li style="background-image:url('{% static  'img/Cafe1.jpeg' %}'); ">
                         <div class="content_slider">
                             <div>
-                                <h2>Imagen 2</h2>
-                                <p>Escribe el texto que aparecerá sobre la imagen número 2</p>
-                                <a href="https://www.migueltroyano.com" target="_blank" class="btnSlider">Acceder</a>
+                                <h2>Arata</h2>
+                                <p>Venta de Semillas de Cafe.</p>
+                                <a href="{% url 'servicios' %}" target="_blank" class="btnSlider">Acceder</a>
                             </div>
                         </div>
                     </li>
                     <li style="background-image: url('{% static  'img/granosemilla.jpg' %}'); ">
                         <div class="content_slider">
                             <div>
-                                <h2>Imagen 3</h2>
-                                <p>Escribe el texto que aparecerá sobre la imagen número 3</p>
-                                <a href="https://www.migueltroyano.com" target="_blank" class="btnSlider">Acceder</a>
+                                <h2>Arata</h2>
+                                <p>Venta de Semillas de Cafe.</p>
+                                <a href="{% url 'servicios' %}" target="_blank" class="btnSlider">Acceder</a>
                             </div>
                         </div>
                     </li>
                 </ul>
             </div>
-
         </section>
-
         {% endblock %}
-
-
     </main>
-
-
     <footer class="bg-dark text-center text-white">
         <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><svg
                 xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook"

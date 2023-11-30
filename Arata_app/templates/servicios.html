@@ -13,42 +13,26 @@
             podrás consultar los precios y localización desde la comodidad de tu casa </p>
         </div>
       </div>
-      <div class="container mb-4">
-        <form class="row g-2 justify-content-center mb-2">
-          <div class="col-md-4">
-            <label for="inputVariedad" class="form-label">Buscar por Variedad</label>
-            <input type="text" class="form-control" id="inputVariedad">
-          </div>
-          <div class="col-md-4">
-            <label for="inputDepartamento" class="form-label">Buscar por Departamento</label>
-            <div class="input-group">
-              <select class="form-select me-2" id="inputDepartamento"> <!-- Agregué la clase me-2 aquí -->
-                <option value="departamento1">Departamento 1</option>
-                <option value="departamento2">Departamento 2</option>
-                <!-- Agrega más opciones según sea necesario -->
-              </select>
-              <button type="submit" class="btn btn-primary">Buscar</button>
-            </div>
-          </div>
-        </form>
-      </div>
+      
       
       <div class="container">
         <div class="row">
           {% for semilla in semillas %}
             <div class="col-md-4">
               <div class="card mb-4">
-                <img src="{{ semilla.foto.url }}" class="card-img-top" alt="{{ semilla.variedad }}">
+                <img src="{{ semilla.foto.url }}" class="card-img-top" alt="{{ semilla.variedad }}" style="width: 400px; height: 400px;">
+
                 <div class="card-body">
                   <h5 class="card-title">{{ semilla.variedad }}</h5>
                   <p class="card-text">Características: {{ semilla.caracteristicas }}</p>
                   <p class="card-text">Precio: {{ semilla.precio }}</p>
                   <p class="card-text">Origen: {{ semilla.origen }}</p>
                   <p class="card-text">Cantidad Disponible: {{ semilla.cantidad_disponible }}</p>
-                  <a href="https://api.whatsapp.com/send?phone=TUNUMERO&text=Hola%20quiero%20más%20información%20sobre%20{{ semilla.variedad }}"
-                    class="btn btn-success" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
-                  </a>
+                  <a href="https://api.whatsapp.com/send?phone=573107760588&text=Hola%20quiero%20más%20información%20sobre%20{{ semilla.variedad }}"
+                  class="btn btn-success" target="_blank">
+                  <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+               </a>
+               
                 </div>
               </div>
             </div>

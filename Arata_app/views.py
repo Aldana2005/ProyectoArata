@@ -1,9 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Semilla, Ubicacion
-from .forms import SemillaForm, UbicacionForm
-
+from .models import Semilla
+from .forms import SemillaForm
 def inicio(request):
     return render(request, 'base.html')
 
@@ -16,9 +15,16 @@ def servicios(request):
 
 def contacto(request):
     return render(request, 'contacto.html')
-
 def home(request):
-    return render(request, 'semillas/base_semilla.html', {})
+    # Calcular las cantidades
+    total_semillas = Semilla.objects.count()
+    
+
+    # Pasar las cantidades al contexto
+    context = {'total_semillas': total_semillas}
+
+    # Renderizar la plantilla con el contexto
+    return render(request, 'semillas/base_semilla.html', context)
 
 def semilla_list(request):
     semillas = Semilla.objects.all()
@@ -36,41 +42,40 @@ def semilla_list(request):
 
     return render(request, 'semillas/semilla_list.html', {'semillas': semillas_paginadas})
 
-def semilla_detail(request, pk):
-    semilla = get_object_or_404(Semilla, pk=pk)
-    return render(request, 'semillas/semilla_detail.html', {'semilla': semilla})
+
 
 def semilla_new(request):
-    ubicaciones = Ubicacion.objects.all()
-
+   
     if request.method == "POST":
         form = SemillaForm(request.POST, request.FILES)
         if form.is_valid():
             semilla = form.save()
-            return redirect('semilla_detail', pk=semilla.pk)
+            return redirect('semilla_list')
         else:
             print(form.errors)
     else:
         form = SemillaForm()
 
-    return render(request, 'semillas/semilla_edit.html', {'form': form, 'ubicaciones': ubicaciones})
+    return render(request, 'semillas/semilla_edit.html', {'form': form})
+
+
 
 
 def semilla_edit(request, pk):
     semilla = get_object_or_404(Semilla, pk=pk)
-    ubicaciones = Ubicacion.objects.all()
-
+   
     if request.method == "POST":
         form = SemillaForm(request.POST, request.FILES, instance=semilla)
         if form.is_valid():
-            semilla = form.save()
-            return redirect('semilla_detail', pk=semilla.pk)
+            form.save()
+            print("Semilla guardada exitosamente")
+            return redirect('semilla_list')
         else:
-            print(form.errors)
+            print("Errores en el formulario:", form.errors)
     else:
         form = SemillaForm(instance=semilla)
 
-    return render(request, 'semillas/semilla_edit.html', {'semilla': semilla, 'ubicaciones': ubicaciones, 'form': form})
+    return render(request, 'semillas/semilla_edit.html', {'form': form})
 
 
 def semilla_delete(request, pk):
@@ -78,12 +83,3 @@ def semilla_delete(request, pk):
     semilla.delete()
     return redirect('semilla_list')
 
-def ubicacion_new(request):
-    if request.method == "POST":
-        form = UbicacionForm(request.POST)
-        if form.is_valid():
-            ubicacion = form.save()
-            return redirect('semilla_new')
-    else:
-        form = UbicacionForm()
-    return render(request, 'semillas/ubicacion_edit.html', {'form': form})

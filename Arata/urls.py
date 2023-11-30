@@ -19,6 +19,8 @@ from django.contrib import admin
 from django.urls import path, include
 from Arata_app.auth import urls as auth_urls
 from Arata_app import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,11 +32,13 @@ urlpatterns = [
 
     path('semillas/', views.semilla_list, name='semilla_list'),
     path('home/', views.home, name='home'), 
-    path('semilla/<int:pk>/', views.semilla_detail, name='semilla_detail'),
+
     path('semilla/new/', views.semilla_new, name='semilla_new'),
     path('semilla/<int:pk>/edit/', views.semilla_edit, name='semilla_edit'),
     path('semilla/<int:pk>/delete/', views.semilla_delete, name='semilla_delete'),
-    path('ubicacion/new/', views.ubicacion_new, name='ubicacion_new'),
+  
     
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
